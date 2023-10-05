@@ -80,7 +80,7 @@ namespace TicTacToe
             if (Board.GetBoardLayout()[2] == Board.GetBoardLayout()[4] && Board.GetBoardLayout()[4] == Board.GetBoardLayout()[6])
                 gameOver = true;
 
-
+            
 
             gameOver = false;
         }
