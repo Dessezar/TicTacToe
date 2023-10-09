@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TicTacToe
 {
+
+
+
+
     public class PlayerMoves //valde ett namn som inte riktigt stämmer överens med upplägget av klasser och metoder vi valt att använda. 
     {
         public PlayerMoves(bool correctInput)
@@ -14,48 +19,55 @@ namespace TicTacToe
         }
 
 
-        
+
         private bool _correctInput = false;
-
         CheckForWin myCheck = new CheckForWin();
-        CheckForWin myGameOver = new CheckForWin();
 
-        private Player myPlayer = new Player(1);
+
         public bool PlayerMove()
         {
             int choice;
             do
             {
+
+                //Console.Clear();
                 Board.GetBoardLayout();
                 _correctInput = true;
-                Console.WriteLine($"\nSpelare {myPlayer.GetPlayer()} välj en plats för din bricka");
+                Console.Write($"                                       Spelare {Player._player} välj en plats för din bricka: ");
                 _correctInput = int.TryParse(Console.ReadLine(), out choice);
-                if (choice < 1 || choice > 9 || Board.GetBoardLayout()[choice - 1] == 'X' || Board.GetBoardLayout()[choice - 1] == 'O')
+                //Console.Clear();
+
+                if (choice < 1 || choice > 9 || Board.board[choice - 1] == 'X' || Board.board[choice - 1] == 'O')
                 {
-                    Console.WriteLine("Ogiltigt val, välj en ruta som inte är upptagen.");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n                           Ogiltigt val, välj ett tal mellan 1 och 9 och en ruta som inte är upptagen.");
+                    Console.WriteLine("\n                           Tryck Enter för att försöka igen.");
+                    Console.ReadLine();
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+
                     _correctInput = false;
                 }
             } while (!_correctInput);
-
-            if (myPlayer.GetPlayer() == 1)
+            if (Player._player == 1)
             {
-                Board.GetBoardLayout()[choice - 1] = 'X';
+                Board.board[choice - 1] = 'X';
             }
             else
             {
-                Board.GetBoardLayout()[choice - 1] = 'O';
+                Board.board[choice - 1] = 'O';
 
             }
-            myPlayer.NextPlayer();
+
 
             myCheck.CheckForWins();
             myCheck.IsBoardFull();
-
-
             return _correctInput;
+
         }
 
     }
+
 }
+
 
 

@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    public class Player
+    static class Player
     {
-        public Player(int player)
+
+        public static int _player = 2;
+
+
+        public static int NextPlayer()
         {
-            _player = player;
-        }
 
-        private int _player { get; set; }
-
-
-
-        public int NextPlayer()
-        {
             if (_player == 1)
             {
                 _player = 2;
@@ -30,14 +26,14 @@ namespace TicTacToe
 
             return _player;
         }
-        public int GetPlayer()
+        public static int GetPlayer()
         {
             return _player;
         }
-        public int SetPlayer(int player)
+        public static int SetPlayer(int player)
         {
             _player = player;
-            return _player; 
+            return _player;
         }
 
     }

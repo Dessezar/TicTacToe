@@ -9,32 +9,67 @@ namespace TicTacToe
 
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+
+            //Console.WriteLine("  ______________________         ______________________             ______________________                 ");
+            //Console.WriteLine(" |                      |       |                      |           |                      |                ");
+            //Console.WriteLine(" |________      ________|       |________      ________|           |________      ________|                ");
+            //Console.WriteLine("          |    |                         |    |                             |    |                         ");
+            //Console.WriteLine("          |    |                         |    |                             |    |                         ");
+            //Console.WriteLine("          |    |    ____       ____      |    |     ______        ____      |    |      ___         ___    ");
+            //Console.WriteLine("          |    |   |    |     |    |     |    |    |  __  |      |    |     |    |     |   |       |   |   ");
+            //Console.WriteLine("          |    |   |    |    |  |   |    |    |   |__|  |  |    |  |   |    |    |    |  |  |     |  |  |  ");
+            //Console.WriteLine("          |    |   |    |   |  | |___|   |    |     ____|  |   |  | |___|   |    |   |  | |  |   |  |_|__| ");
+            //Console.WriteLine("          |    |   |    |   |  |  ___    |    |    |  __   |   |  |  ___    |    |   |  | |  |   | |   __  ");
+            //Console.WriteLine("          |    |   |    |   |  | |   |   |    |   |  |  |  |   |  | |   |   |    |   |  | |  |   |  | |  | ");
+            //Console.WriteLine("          |    |   |    |    |  |   |    |    |   |  |__|  |    |  |   |    |    |    |  |  |     |  |  |  ");
+            //Console.WriteLine("          |____|   |____|     |____|     |____|    |______|      |____|     |____|     |___|       |___|   ");
+
             CheckForWin myCheck = new CheckForWin();
+
             PlayerMoves myMoves = new PlayerMoves(true);
-            do
+
+            while (true)
             {
-                myMoves.PlayerMove();
+
+                do
+                {
+                    myCheck.GameOver = false;
+                    myCheck.BoardFull = false;
+                    //Player.GetPlayer();
+                    //Console.Clear();
+                    Player.NextPlayer();
+                    myMoves.PlayerMove();
+
+                }
+                while (!myCheck.GameOver && !myCheck.BoardFull); // Lägg till villkoret för fullt bräde
+
+                //try
+                //{
+                Console.WriteLine("                    Spelet är över, vill du avsluta tryck \"N\" annars tryck valfri knapp för att spela igen");
+                string playAgainInput = Console.ReadLine().ToLower();
+
+                if (playAgainInput == "n")
+                {
+                    break;
+                }
+                else
+                {
+
+
+                    Board.ResetBoard();
+                    Player.SetPlayer(2);
+                    //Player.NextPlayer();
+                }
+
+                //}
+                //catch (FormatException)
+                //{
+                //    Console.WriteLine("fel inmatning");
+                //    Console.WriteLine("spelet är över, vill du spela igen? ( J/N )");
+                //}
             }
-            while (!myCheck.GameOver);
-
-
-
-
-
-            //    //        Console.WriteLine("     ______________________                        ");
-            //    //        Console.WriteLine("    |                      |                       ");
-            //    //        Console.WriteLine("    |________      ________|                       ");
-            //    //        Console.WriteLine("             |    |                                ");
-            //    //        Console.WriteLine("             |    |                                ");
-            //    //        Console.WriteLine("             |    |    ____       ____             ");
-            //    //        Console.WriteLine("             |    |   |    |     |    |            ");
-            //    //        Console.WriteLine("             |    |   |    |    |  |   |           ");
-            //    //        Console.WriteLine("             |    |   |    |   |  | |___|          ");
-            //    //        Console.WriteLine("             |    |   |    |   |  |  ___           ");
-            //    //        Console.WriteLine("             |    |   |    |   |  | |   |          ");
-            //    //        Console.WriteLine("             |    |   |    |    |  |   |           ");
-            //    //        Console.WriteLine("             |____|   |____|     |____|            ");
-
 
 
 
